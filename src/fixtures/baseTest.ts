@@ -1,5 +1,6 @@
 // path: src/fixtures/baseTest.ts
 import { test as base, type Page } from '@playwright/test';
+import { DocsPage } from '../pages/DocsPage';
 import { PlaywrightHomePage } from '../pages/PlaywrightHomePage';
 import { logger } from '../utils/logger';
 
@@ -24,10 +25,16 @@ class BaseTest {
 }
 
 type AppFixtures = {
+  docsPage: DocsPage;
   homePage: PlaywrightHomePage;
 };
 
 export const test = base.extend<AppFixtures>({
+  docsPage: async ({ page }, use) => {
+    await BaseTest.setup(page);
+    await use(new DocsPage(page));
+    await BaseTest.teardown();
+  },
   homePage: async ({ page }, use) => {
     await BaseTest.setup(page);
     await use(new PlaywrightHomePage(page));
