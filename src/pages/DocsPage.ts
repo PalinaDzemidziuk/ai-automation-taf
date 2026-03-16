@@ -49,26 +49,44 @@ export class DocsPage extends BasePage {
       throw new Error(`No first subsection mapping found for section: ${section}`);
     }
 
-    await this.openSubsection(firstSubsection);
+    await this.toggleSection(firstSubsection, 'open');
   }
 
   /**
-   * Closes an expanded docs subsection group.
+   * Opens or closes a docs section or subsection.
    */
-  public async closeSubsection(module: string): Promise<void> {
-    const subsectionToggle = this.getByRole('button', { name: module });
-    const isExpanded = await subsectionToggle.getAttribute('aria-expanded');
+  public async toggleSection(section: string, option: string): Promise<void> {
+    const normalizedOption = option.trim().toLowerCase();
 
-    if (isExpanded === 'true') {
-      await subsectionToggle.click();
+    if (normalizedOption === 'open') {
+      const subsectionLink = this.getByRole('link', { name: section });
+      if (await subsectionLink.count()) {
+        await subsectionLink.click();
+        return;
+      }
+
+      const sectionToggle = this.getByRole('button', { name: section });
+      const isExpanded = await sectionToggle.getAttribute('aria-expanded');
+
+      if (isExpanded !== 'true') {
+        await sectionToggle.click();
+      }
+
+      return;
     }
-  }
 
-  /**
-   * Opens a subsection page from the sidebar.
-   */
-  public async openSubsection(module: string): Promise<void> {
-    await this.getByRole('link', { name: module }).click();
+    if (normalizedOption === 'close') {
+      const sectionToggle = this.getByRole('button', { name: section });
+      const isExpanded = await sectionToggle.getAttribute('aria-expanded');
+
+      if (isExpanded === 'true') {
+        await sectionToggle.click();
+      }
+
+      return;
+    }
+
+    throw new Error(`Unsupported toggle option: ${option}`);
   }
 
   /**

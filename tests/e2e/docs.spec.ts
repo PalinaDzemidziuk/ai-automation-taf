@@ -8,7 +8,7 @@ test.describe('Docs suite', () => {
 
   test('verifies the chosen section is opened', async ({ docsPage }) => {
     await docsPage.openSection('Getting Started');
-    await docsPage.openSubsection('Installation');
+    await docsPage.toggleSection('Installation', 'open');
     await docsPage.expectSubsectionOpened('Installation');
   });
 });
