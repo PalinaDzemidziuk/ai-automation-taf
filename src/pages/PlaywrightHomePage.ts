@@ -18,24 +18,10 @@ export class PlaywrightHomePage extends BasePage {
   }
 
   /**
-   * Returns the top navigation link for Docs.
-   */
-  public docsLink() {
-    return this.getByRole('link', { name: /docs/i });
-  }
-
-  /**
    * Returns a top navigation link by name.
    */
   public topNavigationLink(name: string | RegExp): Locator {
     return this.getByRole('link', { name });
-  }
-
-  /**
-   * Navigates to the docs page from the home page.
-   */
-  public async goToDocs(): Promise<void> {
-    await this.docsLink().click();
   }
 
   /**
