@@ -102,4 +102,18 @@ export class DocsPage extends BasePage {
   public async expectSubsectionOpened(module: string): Promise<void> {
     await expect(this.subsectionHeading(module)).toBeVisible();
   }
+
+  /**
+   * Returns the table-of-contents link for "HTML Test Reports".
+   */
+  public contentModuleLink(): Locator {
+    return this.getByRole('link', { name: 'HTML Test Reports', exact: true });
+  }
+
+  /**
+   * Returns the heading for "HTML Test Reports".
+   */
+  public contentModuleTitle(): Locator {
+    return this.getByRole('heading', { name: /html test reports/i });
+  }
 }

@@ -1,5 +1,5 @@
 // path: tests/e2e/docs.spec.ts
-import { test } from '../../src/fixtures/baseTest';
+import { expect, test } from '../../src/fixtures/baseTest';
 
 test.describe('Docs suite', () => {
   test.beforeEach(async ({ docsPage }) => {
@@ -10,5 +10,12 @@ test.describe('Docs suite', () => {
     await docsPage.openSection('Getting Started');
     await docsPage.toggleSection('Installation', 'open');
     await docsPage.expectSubsectionOpened('Installation');
+  });
+
+  test('navigates to HTML Test Reports module', async ({ docsPage }) => {
+    await docsPage.expectVisible(docsPage.contentModuleLink());
+    await docsPage.contentModuleLink().click();
+
+    await expect(docsPage.contentModuleTitle()).toBeVisible();
   });
 });
