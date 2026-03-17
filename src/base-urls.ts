@@ -13,4 +13,8 @@ export const BASE_URLS = {
   // SauceDemo site used by checkout login page object.
   // Used in specs: tests/e2e/checkout.spec.ts.
   sauceDemo: 'https://www.saucedemo.com',
+
+  // Practice Automated Testing shopping page used by filter scenarios.
+  // Used in specs: tests/e2e/filtering.spec.ts.
+  practiceAutomatedTestingShopping: 'https://practiceautomatedtesting.com/shopping',
 } as const;

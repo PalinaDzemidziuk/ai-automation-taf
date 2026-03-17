@@ -24,3 +24,9 @@ export const checkoutFlowData = {
   cartTitle: 'Your Cart',
   checkoutTitle: 'Checkout: Your Information',
 } as const;
+
+/** Product filtering data for shopping page scenarios. */
+export const filteringData = {
+  maxPrice: 40,
+  expectedProductsCount: 4,
+} as const;
