@@ -8,7 +8,11 @@ const MONTHS = [
  * @example formatDayMonth('01.01') // "1 January"
  * @example formatDayMonth('25.12') // "25 December"
  */
-export function formatDayMonth(ddMm: string): string {
+export function formatDayMonth(ddMm: string | null | undefined): string {
+  if (ddMm == null) {
+    return '';
+  }
+
   const match = ddMm.match(/^(\d{1,2})\.(\d{1,2})$/);
   if (!match) {
     throw new Error(`Invalid date format "${ddMm}". Expected "DD.MM".`);
