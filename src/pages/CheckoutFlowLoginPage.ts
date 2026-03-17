@@ -1,4 +1,5 @@
 import type { Locator, Page } from '@playwright/test';
+import { BASE_URLS } from '../base-urls';
 import { BasePage } from './BasePage';
 
 /**
@@ -13,7 +14,7 @@ export class CheckoutFlowLoginPage extends BasePage {
    * Opens SauceDemo login page.
    */
   public async open(): Promise<void> {
-    await this.navigate('https://www.saucedemo.com/');
+    await this.navigate(`${BASE_URLS.sauceDemo}/`);
   }
 
   /**

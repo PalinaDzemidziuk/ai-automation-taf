@@ -1,5 +1,6 @@
 // path: src/pages/AuthPage.ts
 import type { Locator, Page } from '@playwright/test';
+import { BASE_URLS } from '../base-urls';
 import { BasePage } from './BasePage';
 
 /**
@@ -14,7 +15,7 @@ export class AuthPage extends BasePage {
    * Opens the login page.
    */
   public async open(): Promise<void> {
-    await this.navigate('https://practicetestautomation.com/practice-test-login/');
+    await this.navigate(`${BASE_URLS.practiceTestAutomation}/practice-test-login/`);
   }
 
   /**

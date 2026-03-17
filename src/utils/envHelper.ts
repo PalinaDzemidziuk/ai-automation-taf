@@ -1,4 +1,6 @@
 // path: src/utils/envHelper.ts
+import { BASE_URLS } from '../base-urls';
+
 /**
  * Reads and validates environment-driven runtime settings.
  */
@@ -7,7 +9,7 @@ export class EnvHelper {
    * Returns the configured base URL for tests.
    */
   public getBaseUrl(): string {
-    return process.env.BASE_URL ?? 'https://playwright.dev';
+    return process.env.BASE_URL ?? BASE_URLS.playwright;
   }
 
   /**
