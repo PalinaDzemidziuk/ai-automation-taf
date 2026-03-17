@@ -1,5 +1,5 @@
 // path: src/pages/PlaywrightHomePage.ts
-import type { Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 import { BasePage } from './BasePage';
 
 /**
@@ -25,9 +25,25 @@ export class PlaywrightHomePage extends BasePage {
   }
 
   /**
+   * Returns a top navigation link by name.
+   */
+  public topNavigationLink(name: string | RegExp): Locator {
+    return this.getByRole('link', { name });
+  }
+
+  /**
    * Navigates to the docs page from the home page.
    */
   public async goToDocs(): Promise<void> {
     await this.docsLink().click();
+  }
+
+  /**
+   * Opens a top navigation page by link name.
+   */
+  public async openTopNavigationPage(name: string | RegExp): Promise<void> {
+    const link = this.topNavigationLink(name);
+    await this.expectVisible(link);
+    await link.click();
   }
 }
