@@ -36,7 +36,7 @@ export class BasePage {
    * Returns a test-id based locator.
    */
   public getByTestId(testId: string): Locator {
-    return this.page.getByTestId(testId);
+    return this.page.locator(`[data-testid="${testId}"], [data-test="${testId}"]`);
   }
 
   /**

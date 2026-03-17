@@ -11,3 +11,16 @@ export const invalidUser = {
   username: 'incorrectUser',
   password: 'incorrectPassword',
 } as const;
+
+/** Valid SauceDemo user for checkout flow scenarios. */
+export const sauceDemoUser = {
+  username: 'standard_user',
+  password: 'secret_sauce',
+} as const;
+
+/** Product and expected labels used in checkout flow tests. */
+export const checkoutFlowData = {
+  productName: 'Sauce Labs Bolt T-Shirt',
+  cartTitle: 'Your Cart',
+  checkoutTitle: 'Checkout: Your Information',
+} as const;
